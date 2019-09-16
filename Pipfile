@@ -10,6 +10,8 @@ psycopg2 = "*"
 psycopg2-binary = "*"
 awsebcli = "*"
 boto3 = "*"
+django = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"
