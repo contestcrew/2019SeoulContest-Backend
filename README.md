@@ -21,7 +21,6 @@ pipenv install
 1. 새로운 작업에 대한 issue를 남긴다. 
 2. issue 번호에 해당하는 브랜치를 local에서 생성한다. 
    - 예를 들어 1번 issue에 해당하는 브랜치를 만든다면, 브랜치 명은 `1-개발환경세팅` 이 된다.
-
 3. local에서 생성한 브랜치( `1-개발환경세팅` )에서 작업을 하고 깃헙에 푸쉬한다. 
    - 작업이 완료된 경우 local에서 `add`, `commit`을 한 후 `git push origin 1-개발환경세팅` 으로 푸쉬한다.
 4. Github의 repo에 해당하는 push의 pull request를 열어준다.
@@ -30,3 +29,8 @@ pipenv install
 6. merge가 완료되면 local의 `master` 브랜치에서 `git pull origin master`로 업데이트 된 소스 코드를 내려 받는다. 
 7. 새로운 작업은 다시 1번 작업부터 반복한다.
 
+
+
+### 작업 관련 사항
+
+만약 본인이 작업하던 내용이 그날 안에 끝나지 않아도 무조건 github서버에 push해놓고 자도록 한다. (다른 팀원들이 진행사항을 볼 수 있게 하기 위함) 이 때 commit message는 맨 앞에 WIP(Work In Progress)로 달아 남겨 놓는다.
