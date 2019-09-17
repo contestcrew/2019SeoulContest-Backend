@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name localhost;
+    charset utf-8;
+    client_max_body_size 128M;
+
+    # 모든 URL 연결에 대해
+    location / {
+        # uwsgi와의 연결 unix 소켓 사용
+        # /tmp/app.sock 파일 사용
+        uwsgi_pass  unix:///tmp/app.sock;
+        include     uwsgi_params;
+    }
+}
