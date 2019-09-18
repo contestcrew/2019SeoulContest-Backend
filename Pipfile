@@ -7,13 +7,13 @@ verify_ssl = true
 ipython = "*"
 
 [packages]
-psycopg2 = "*"
 psycopg2-binary = "*"
 awsebcli = "*"
 boto3 = "*"
 django = "*"
 djangorestframework = "*"
 pre-commit = "*"
+pre-commit-hooks = "*"
 
 [requires]
 python_version = "3.7"
