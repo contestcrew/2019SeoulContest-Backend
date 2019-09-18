@@ -4,5 +4,5 @@ DEBUG = True
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-secrets = json.load(open(SECRETS_DIR, 'dev.json'))
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'dev.json')))
 
