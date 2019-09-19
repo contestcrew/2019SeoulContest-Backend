@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7d8fea897b7bd2b9492133c15c24c5b91bdecf446a761b23577870b16f400fb7"
+            "sha256": "23b2e41a19f66aea59b5e0553925ae4c04cdc1b5c0d287781b56dbbc688e8806"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -52,6 +52,14 @@
             ],
             "index": "pypi",
             "version": "==2.2.5"
+        },
+        "django-model-utils": {
+            "hashes": [
+                "sha256:3f130a262e45d73e0950d2be76af4bf4ee86804dd60e5f90afc5cd948fcfe760",
+                "sha256:682f58c1de330cedcda58cc85d5232c5b47a9e2cb67bef4541fb43fdaeb18e96"
+            ],
+            "index": "pypi",
+            "version": "==3.2.0"
         },
         "djangorestframework": {
             "hashes": [
@@ -312,6 +320,14 @@
             "markers": "sys_platform == 'darwin'",
             "version": "==0.1.0"
         },
+        "awscli": {
+            "hashes": [
+                "sha256:33d57cc3a33a1f2816f31bad4ba42401b52dc549d63944de927332a3ad242542",
+                "sha256:b6a65e47fab4760a6fa1bbaf0902bf9c4854e1c5a38c9b8a47c28777a9068ab9"
+            ],
+            "index": "pypi",
+            "version": "==1.16.241"
+        },
         "awsebcli": {
             "hashes": [
                 "sha256:9950995e348374d5957456a7cc74463e21f6aa0d0b5da539f6bc7e954493b887"
@@ -514,6 +530,13 @@
             ],
             "version": "==0.6.0"
         },
+        "pyasn1": {
+            "hashes": [
+                "sha256:62cdade8b5530f0b185e09855dd422bc05c0bbff6b72ff61381c09dac7befd8c",
+                "sha256:a9495356ca1d66ed197a0f72b41eb1823cf7ea8b5bd07191673e8147aecf8604"
+            ],
+            "version": "==0.4.7"
+        },
         "pygments": {
             "hashes": [
                 "sha256:71e430bc85c88a430f000ac1d9b331d2407f681d6f6aec95e8bcfbc3df5b0127",
@@ -553,6 +576,20 @@
                 "sha256:ea881206e59f41dbd0bd445437d792e43906703fff75ca8ff43ccdb11f33f263"
             ],
             "version": "==2.20.1"
+        },
+        "rsa": {
+            "hashes": [
+                "sha256:25df4e10c263fb88b5ace923dd84bf9aa7f5019687b5e55382ffcdb8bede9db5",
+                "sha256:43f682fea81c452c98d09fc316aae12de6d30c4b5c84226642cf8f8fd1c93abd"
+            ],
+            "version": "==3.4.2"
+        },
+        "s3transfer": {
+            "hashes": [
+                "sha256:6efc926738a3cd576c2a79725fed9afde92378aa5c6a957e3af010cb019fac9d",
+                "sha256:b780f2411b824cb541dbcd2c713d0cb61c7d1bcadae204cdddda2b35cef493ba"
+            ],
+            "version": "==0.2.1"
         },
         "semantic-version": {
             "hashes": [
