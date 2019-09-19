@@ -1,4 +1,4 @@
-FROM            wps9thmango/mango:base
+FROM            fastkim0918/seoulcontest:base
 ENV             DJANGO_SETTINGS_MODULE  config.settings.production
 
 COPY            ./      /srv/project
