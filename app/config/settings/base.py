@@ -26,6 +26,8 @@ SECRET_KEY = secrets["SECRET_KEY"]
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
+# 커스텀 User 모델 지정
+AUTH_USER_MODEL = "users.User"
 
 # Application definition
 
