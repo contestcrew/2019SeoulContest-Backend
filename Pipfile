@@ -16,6 +16,7 @@ djangorestframework = "*"
 pre-commit = "*"
 pre-commit-hooks = "*"
 django-model-utils = "*"
+django-storages = "*"
 
 [requires]
 python_version = "3.7"
