@@ -5,10 +5,10 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
+awsebcli = "*"
 
 [packages]
 psycopg2-binary = "*"
-awsebcli = "*"
 boto3 = "*"
 django = "*"
 djangorestframework = "*"
