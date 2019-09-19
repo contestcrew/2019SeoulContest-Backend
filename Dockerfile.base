@@ -13,4 +13,4 @@ RUN             apt -y install gcc nginx supervisor && \
 COPY            Pipfile /tmp/Pipfile
 COPY            Pipfile.lock /tmp/Pipfile.lock
 WORKDIR         /tmp/
-RUN             pipenv install --system --deploy --ignore-pipfile
+RUN             pipenv install --system --ignore-pipfile
