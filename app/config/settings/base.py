@@ -29,6 +29,16 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 # 커스텀 User 모델 지정
 AUTH_USER_MODEL = "users.User"
 
+# Static
+STATIC_URL = "/static/"
+
+# collectstatic
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+
+# Media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -95,8 +105,3 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = "/static/"
