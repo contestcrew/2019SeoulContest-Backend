@@ -16,7 +16,6 @@ djangorestframework = "*"
 pre-commit = "*"
 pre-commit-hooks = "*"
 django-model-utils = "*"
-psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
