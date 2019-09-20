@@ -11,8 +11,8 @@ class Category(models.Model):
 
 
 class Request(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='카테고리')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='작성자')
+    category = models.ForeignKey(Category, related_name='requests', on_delete=models.CASCADE, verbose_name='카테고리')
+    author = models.ForeignKey(User, related_name='requests', on_delete=models.CASCADE, verbose_name='작성자')
     title = models.CharField('제목', maxlength=100)
     content = models.TextField('내용')
     score = models.PositiveIntegerField('점수', default=0)
@@ -26,6 +26,5 @@ class Request(models.Model):
 
 
 class RequestImage(models.Model):
-    request = models.ForeignKey(Request, related_name='images', blank=True, null=True,
-                                on_delete=models.CASCADE)
+    request = models.ForeignKey(Request, related_name='images', on_delete=models.CASCADE, verbose_name='의뢰')
     image = models.ImageField(upload_to='request/%Y/%m/%d', verbose_name='이미지')
