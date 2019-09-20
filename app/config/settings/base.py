@@ -24,7 +24,7 @@ SECRETS_DIR = os.path.join(ROOT_DIR, ".secrets")
 secrets = json.load(open(os.path.join(SECRETS_DIR, "base.json")))
 SECRET_KEY = secrets["SECRET_KEY"]
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".elasticbeanstalk.com"]
 
 # 커스텀 User 모델 지정
 AUTH_USER_MODEL = "users.User"
