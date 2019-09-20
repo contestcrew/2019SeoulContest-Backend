@@ -1,5 +1,5 @@
 FROM            python:3.6.7-slim
-MAINTAINER      wps9thmango@gmail.com
+MAINTAINER      fastkim0918@gmail.com
 ENV             LANG    C.UTF-8
 
 

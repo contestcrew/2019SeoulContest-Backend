@@ -2,15 +2,6 @@
 # Created by https://www.gitignore.io/api/git,linux,macos,python,windows,pycharm+all
 # Edit at https://www.gitignore.io/?templates=git,linux,macos,python,windows,pycharm+all
 
-# Media
-/.media
-
-# Tool ROOT
-/.tool
-
-# Log ROOT
-/.log
-
 ### SECRET ###
 /.secrets
 /.static
