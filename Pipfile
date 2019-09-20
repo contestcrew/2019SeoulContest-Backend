@@ -5,8 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
-awsebcli = "*"
 awscli = "*"
+awsebcli = "*"
 
 [packages]
 psycopg2-binary = "*"
@@ -17,6 +17,7 @@ pre-commit = "*"
 pre-commit-hooks = "*"
 django-model-utils = "*"
 django-storages = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.7"
