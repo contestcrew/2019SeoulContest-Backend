@@ -1,10 +1,6 @@
 from rest_framework import viewsets
 from .models import Category, Request
-from .serializers import (
-    CategorySerializer,
-    RequestSerializer,
-    BoundaryRequestSerializer,
-)
+from .serializers import CategorySerializer, RequestSerializer
 from rest_framework.decorators import action
 from django.db.models import Q
 import math
@@ -22,7 +18,6 @@ class RequestViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.action == "boundary":
-            __import__("ipdb").set_trace()
             latitude = float(self.request.query_params.get("latitude"))
             longitude = float(self.request.query_params.get("longitude"))
             variable_for_latitude = 1 / 111.2
@@ -40,12 +35,6 @@ class RequestViewSet(viewsets.ModelViewSet):
                 & Q(longitude__gte=boundary["min_longitude"])
             )
         return queryset
-
-    def get_serializer_class(self):
-        serializer_class = super().get_serializer_class()
-        if self.action == "boundary":
-            serializer_class = BoundaryRequestSerializer
-        return serializer_class
 
     @action(methods=["get"], detail=False)
     def boundary(self, request, *args, **kwargs):
