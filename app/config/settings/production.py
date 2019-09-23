@@ -1,10 +1,10 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 WSGI_APPLICATION = 'config.wsgi.production.application'
 
-secrets = json.load(open(os.path.join(SECRETS_DIR, 'dev.json')))
+secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 DATABASES = secrets['DATABASES']
 
