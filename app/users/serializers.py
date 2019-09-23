@@ -14,11 +14,12 @@ class UserSerializer(serializers.ModelSerializer):
             "nickname",
             "first_name",
             "last_name",
-            "email"
+            "email",
             "phone",
+            "grade",
+            "gender",
             "manner_score",
             "citizen_score",
-            "grade"
         )
 
     def create(self, validated_data):

@@ -18,6 +18,12 @@ pre-commit-hooks = "*"
 django-model-utils = "*"
 django-storages = "*"
 awsebcli = "*"
+pillow = "*"
+drf-yasg = "*"
+celery = "*"
+packaging = "*"
+django-extensions = "*"
+swagger-spec-validator = "*"
 
 [requires]
 python_version = "3.7"

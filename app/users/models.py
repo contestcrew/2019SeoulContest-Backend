@@ -14,13 +14,13 @@ class User(AbstractUser):
     GENDER = Choices((0, "MAN", _("MAN")), (1, "WOMAN", _("WOMAN")))
     nickname = models.CharField("별명", max_length=10)
     email = models.EmailField("이메일", max_length=50, blank=True)
-    phone = models.PositiveIntegerField("전화번호", blank=True, null=True)
+    phone = models.PositiveIntegerField("전화번호", null=True)
     manner_score = models.IntegerField("매너점수", default=0)
-    point = models.IntegerField("포인트 점수", default=0)
+    citizen_score = models.IntegerField("포인트 점수", default=0)
     grade = models.IntegerField(
         "사용자 등급", choices=USER_GRADE, default=USER_GRADE.GENERAL
     )
-    gender = models.IntegerField("성별", choices=GENDER, default=GENDER.MAN)
+    gender = models.IntegerField("성별", choices=GENDER, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
