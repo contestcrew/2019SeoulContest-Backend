@@ -24,6 +24,7 @@ celery = "*"
 packaging = "*"
 django-extensions = "*"
 swagger-spec-validator = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.7"
