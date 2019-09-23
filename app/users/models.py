@@ -12,6 +12,7 @@ class User(AbstractUser):
         (3, "ADMIN", _("ADMIN")),
     )
     GENDER = Choices((0, "MAN", _("MAN")), (1, "WOMAN", _("WOMAN")))
+    nickname = models.CharField("별명", max_length=10)
     email = models.EmailField("이메일", max_length=50, blank=True)
     phone = models.PositiveIntegerField("전화번호", blank=True, null=True)
     manner_score = models.IntegerField("매너점수", default=0)
