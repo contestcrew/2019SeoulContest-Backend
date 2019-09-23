@@ -8,7 +8,7 @@ User = get_user_model()
 class Report(models.Model):
     request = models.ForeignKey(Request, related_name='reports', on_delete=models.CASCADE, verbose_name='의뢰')
     author = models.ForeignKey(User, related_name='reports', on_delete=models.CASCADE, verbose_name='작성자')
-    title = models.CharField('제목', maxlength=100)
+    title = models.CharField('제목', max_length=100)
     content = models.TextField('내용')
     is_agreed_inform = models.BooleanField('정보제공동의')
     helped_at = models.DateTimeField('도움을 주기 시작한 시간')

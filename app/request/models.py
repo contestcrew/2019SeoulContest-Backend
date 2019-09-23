@@ -13,7 +13,7 @@ class Category(models.Model):
 class Request(models.Model):
     category = models.ForeignKey(Category, related_name='requests', on_delete=models.CASCADE, verbose_name='카테고리')
     author = models.ForeignKey(User, related_name='requests', on_delete=models.CASCADE, verbose_name='작성자')
-    title = models.CharField('제목', maxlength=100)
+    title = models.CharField('제목', max_length=100)
     content = models.TextField('내용')
     score = models.PositiveIntegerField('점수', default=0)
     main_address = models.CharField()
