@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "users",
     "request",
     "reports",
+    "notifications",
     "drf_yasg",
 ]
 
