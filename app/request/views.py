@@ -1,9 +1,15 @@
 from rest_framework import viewsets
-from .models import Category, Request
-from .serializers import CategorySerializer, RequestSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Category, Request, PoliceOffice
+from .serializers import PoliceOfficeSerializer, CategorySerializer, RequestSerializer
 from rest_framework.decorators import action
 from django.db.models import Q
 import math
+
+
+class PoliceOfficeViewSet(viewsets.ModelViewSet):
+    queryset = PoliceOffice.objects.all()
+    serializer_class = PoliceOfficeSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -14,6 +20,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         queryset = super().get_queryset()

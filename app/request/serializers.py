@@ -1,5 +1,22 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import Category, Request, RequestImage
+from .models import PoliceOffice, Category, Request, RequestImage
+
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    nickname = serializers.ReadOnlyField()
+
+    class Meta:
+        model = User
+        fields = ("id", "nickname",)
+
+
+class PoliceOfficeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceOffice
+        field = "__all__"
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -10,19 +27,21 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class RequestSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True, read_only=True)
-    status = serializers.CharField(required=False)
-    status_display = serializers.CharField(source="get_status_display", read_only=True)
+    status = serializers.SerializerMethodField()
+    author = UserSerializer(read_only=True)
+    category_score = serializers.IntegerField(source="category.score", read_only=True)
 
     class Meta:
         model = Request
         fields = (
             "id",
             "category",
+            "police_office",
             "author",
             "title",
             "content",
             "status",
-            "status_display",
+            "category_score",
             "score",
             "main_address",
             "detail_address",
@@ -32,8 +51,13 @@ class RequestSerializer(serializers.ModelSerializer):
             "images",
         )
 
+    def get_status(self, obj):
+        return obj.get_status_display()
+
     def create(self, validated_data):
         images = self.context.get("view").request.FILES
+        user = self.context.get('request').user
+        validated_data["author"] = user
         request = super().create(validated_data)
         for image in images.getlist("images"):
             RequestImage.objects.create(request=request, image=image)
