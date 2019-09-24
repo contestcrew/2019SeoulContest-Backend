@@ -5,18 +5,16 @@ from .models import PoliceOffice, Category, Request, RequestImage
 User = get_user_model()
 
 
-class UserSerializer(serializers.ModelSerializer):
-    nickname = serializers.ReadOnlyField()
-
+class UserNicknameSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "nickname",)
+        fields = ("id", "nickname")
 
 
 class PoliceOfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PoliceOffice
-        field = "__all__"
+        fields = "__all__"
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -28,7 +26,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class RequestSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True, read_only=True)
     status = serializers.SerializerMethodField()
-    author = UserSerializer(read_only=True)
+    author = UserNicknameSerializer(read_only=True)
     category_score = serializers.IntegerField(source="category.score", read_only=True)
 
     class Meta:
@@ -48,6 +46,8 @@ class RequestSerializer(serializers.ModelSerializer):
             "latitude",
             "longitude",
             "occurred_at",
+            "created_at",
+            "updated_at",
             "images",
         )
 
@@ -56,7 +56,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         images = self.context.get("view").request.FILES
-        user = self.context.get('request').user
+        user = self.context.get("request").user
         validated_data["author"] = user
         request = super().create(validated_data)
         for image in images.getlist("images"):
