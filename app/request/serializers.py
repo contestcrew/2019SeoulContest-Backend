@@ -6,11 +6,9 @@ User = get_user_model()
 
 
 class UserNicknameSerializer(serializers.ModelSerializer):
-    nickname = serializers.ReadOnlyField()
-
     class Meta:
         model = User
-        fields = ("id", "nickname",)
+        fields = ("id", "nickname")
 
 
 class PoliceOfficeSerializer(serializers.ModelSerializer):
@@ -48,6 +46,8 @@ class RequestSerializer(serializers.ModelSerializer):
             "latitude",
             "longitude",
             "occurred_at",
+            "created_at",
+            "updated_at",
             "images",
         )
 
@@ -56,7 +56,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         images = self.context.get("view").request.FILES
-        user = self.context.get('request').user
+        user = self.context.get("request").user
         validated_data["author"] = user
         request = super().create(validated_data)
         for image in images.getlist("images"):
