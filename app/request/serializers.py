@@ -5,7 +5,7 @@ from .models import PoliceOffice, Category, Request, RequestImage
 User = get_user_model()
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserNicknameSerializer(serializers.ModelSerializer):
     nickname = serializers.ReadOnlyField()
 
     class Meta:
@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PoliceOfficeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PoliceOffice
-        field = "__all__"
+        fields = "__all__"
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class RequestSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True, read_only=True)
     status = serializers.SerializerMethodField()
-    author = UserSerializer(read_only=True)
+    author = UserNicknameSerializer(read_only=True)
     category_score = serializers.IntegerField(source="category.score", read_only=True)
 
     class Meta:
