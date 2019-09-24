@@ -5,8 +5,7 @@ User = get_user_model()
 
 
 class MobileDevice(models.Model):
-    owner = models.ForeignKey(User, related_name='devices')
-    platform = models.CharField(max_length=20, choices=(('iOS', 'iOS'), ('Android', 'Android'),))
+    owner = models.ForeignKey(User, related_name='devices', on_delete=models.CASCADE)
     token = models.TextField()
 
 
