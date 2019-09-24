@@ -4,6 +4,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class PoliceOffice(models.Model):
+    name = models.CharField("이름", max_length=30)
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField("이름", max_length=30)
     score = models.PositiveIntegerField("점수", default=0)
@@ -18,6 +25,7 @@ class Request(models.Model):
     author = models.ForeignKey(
         User, related_name="requests", on_delete=models.CASCADE, verbose_name="작성자"
     )
+    police_office = models.ForeignKey(PoliceOffice, verbose_name="경찰서", on_delete=models.SET_NULL, null=True)
     title = models.CharField("제목", max_length=100)
     content = models.TextField("내용")
     status = models.CharField(
