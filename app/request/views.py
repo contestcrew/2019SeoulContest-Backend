@@ -27,8 +27,8 @@ class RequestViewSet(viewsets.ModelViewSet):
         if self.action == "boundary":
             latitude = float(self.request.query_params.get("latitude"))
             longitude = float(self.request.query_params.get("longitude"))
-            variable_for_latitude = 1 / 111.2
-            variable_for_longitude = abs(math.cos(latitude * (math.pi / 180.0)))
+            variable_for_latitude = 1 / 109.958489129649955
+            variable_for_longitude = 1 / 88.74
             boundary = {
                 "max_latitude": latitude + variable_for_latitude,
                 "min_latitude": latitude - variable_for_longitude,
