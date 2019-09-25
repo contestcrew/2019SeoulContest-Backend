@@ -15,6 +15,7 @@ class Category(models.Model):
     name = models.CharField("이름", max_length=30)
     score = models.PositiveIntegerField("점수", default=0)
     image = models.ImageField(upload_to="category", null=True, blank=True)
+    pin_image = models.ImageField(upload_to="category_pinimage", null=True, blank=True)
 
 
 class Request(models.Model):
