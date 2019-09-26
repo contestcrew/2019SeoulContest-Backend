@@ -37,7 +37,7 @@ class Request(models.Model):
     detail_address = models.CharField("상세 주소", max_length=50, null=True, blank=True)
     latitude = models.FloatField("위도", null=True, blank=True)
     longitude = models.FloatField("경도", null=True, blank=True)
-    occurred_at = models.DateField("발생 시각", null=True, blank=True)
+    occurred_at = models.DateTimeField("발생 시각", null=True, blank=True)
     created_at = models.DateTimeField("업로드 시각", auto_now_add=True)
     updated_at = models.DateTimeField("수정 시각", auto_now=True)
 
