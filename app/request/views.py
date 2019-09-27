@@ -4,10 +4,9 @@ from .models import Category, Request, PoliceOffice
 from .serializers import PoliceOfficeSerializer, CategorySerializer, RequestSerializer
 from rest_framework.decorators import action
 from django.db.models import Q
-import math
 
 
-def get_boundary_requests(self, latitude, longitude):
+def get_boundary_requests(latitude, longitude):
     variable_for_latitude = 1 / 54.979244565
     variable_for_longitude = 1 / 44.37
     boundary = {
@@ -45,15 +44,14 @@ class RequestViewSet(viewsets.ModelViewSet):
         user = self.request.user
         if self.action == "boundary":
             if user.is_authenticated and user.is_police:
-                police_office = user.police_office
+                police_office = user.police_office or 0
                 queryset = Request.objects.filter(police_office=police_office)
                 return queryset
             latitude = float(self.request.query_params.get("latitude", 0))
             longitude = float(self.request.query_params.get("longitude", 0))
-            queryset = self.get_boundary_requests(latitude, longitude)
-
+            queryset = get_boundary_requests(latitude, longitude)
         if self.action == "list" and user.is_authenticated:
-            Request.objects.filter(author=user)
+            queryset = Request.objects.filter(author=user)
         return queryset
 
     @action(methods=["get"], detail=False)
