@@ -31,3 +31,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.nickname
+
+    @property
+    def is_police(self):
+        if self.grade == 1:
+            return True
+        return False
