@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Report
+from app.notifications.utils import push_notifications
 
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -20,4 +21,8 @@ class ReportSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        return super().create(validated_data)
+        report = super().create(validated_data)
+        recipient = report.request.author
+        if recipient.devices.exists():
+            push_notifications(recipient)
+        return report
