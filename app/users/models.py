@@ -12,6 +12,7 @@ class User(AbstractUser):
         (3, "ADMIN", _("ADMIN")),
     )
     GENDER = Choices((0, "MAN", _("MAN")), (1, "WOMAN", _("WOMAN")))
+    police_office = models.ForeignKey('request.PoliceOffice', verbose_name="경찰서", on_delete=models.SET_NULL, null=True)
     nickname = models.CharField("별명", max_length=10, null=True, blank=True)
     email = models.EmailField("이메일", max_length=50, blank=True)
     phone = models.PositiveIntegerField("전화번호", null=True, blank=True)
@@ -30,3 +31,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.nickname
+
+    @property
+    def is_police(self):
+        if self.grade == 1:
+            return True
+        return False
