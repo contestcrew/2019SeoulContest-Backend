@@ -7,8 +7,9 @@ from django.db.models import Q
 
 
 def get_boundary_requests(latitude, longitude):
-    variable_for_latitude = 1 / 54.979244565
-    variable_for_longitude = 1 / 44.37
+    variable_for_latitude = 0.000083
+    variable_for_longitude = 0.009179
+
     boundary = {
         "max_latitude": latitude + variable_for_latitude,
         "min_latitude": latitude - variable_for_longitude,
