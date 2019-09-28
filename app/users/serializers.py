@@ -7,6 +7,7 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     device_token = serializers.CharField(max_length=200, write_only=True)
+    request_count = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -24,7 +25,12 @@ class UserSerializer(serializers.ModelSerializer):
             "manner_score",
             "citizen_score",
             "device_token",
+            "request_count",
         )
+
+    def get_request_count(self, obj):
+        request_count = obj.requests.exclude(status="complete").count()
+        return request_count
 
     def create(self, validated_data):
         device_token = validated_data.pop("device_token")
