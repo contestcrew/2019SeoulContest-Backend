@@ -25,6 +25,7 @@ packaging = "*"
 django-extensions = "*"
 swagger-spec-validator = "*"
 ipdb = "*"
+pyfcm = "*"
 
 [requires]
 python_version = "3.7"
