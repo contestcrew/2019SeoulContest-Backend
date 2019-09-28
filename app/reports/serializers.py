@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Report
-from app.notifications.utils import push_notifications
+from notifications.utils import push_notifications
 
 
 class ReportSerializer(serializers.ModelSerializer):
