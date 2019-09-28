@@ -23,8 +23,14 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class RequestImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RequestImage
+        fields = ("image",)
+
+
 class RequestSerializer(serializers.ModelSerializer):
-    images = serializers.StringRelatedField(many=True, read_only=True)
+    images = RequestImageSerializer(many=True, read_only=True)
     status = serializers.SerializerMethodField()
     author = UserNicknameSerializer(read_only=True)
     category_score = serializers.IntegerField(source="category.score", read_only=True)
@@ -59,6 +65,6 @@ class RequestSerializer(serializers.ModelSerializer):
         user = self.context.get("request").user
         validated_data["author"] = user
         request = super().create(validated_data)
-        for image in images.getlist("images"):
+        for image in images.values():
             RequestImage.objects.create(request=request, image=image)
         return request
