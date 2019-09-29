@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Report, ReportImage
 from request.serializers import UserNicknameSerializer
+from notifications.utils import push_notifications
 
 
 class ReportSerializer(serializers.ModelSerializer):
@@ -28,4 +29,7 @@ class ReportSerializer(serializers.ModelSerializer):
         report = super().create(validated_data)
         for image in images.getlist('images'):
             ReportImage.objects.create(report=report, image=image)
+        recipient = report.request.author
+        if recipient.devices.exists():
+            push_notifications(recipient)
         return report
