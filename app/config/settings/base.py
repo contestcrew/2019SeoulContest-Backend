@@ -108,7 +108,7 @@ REST_FRAMEWORK = {
     ),
 }
 # Push Notifications
-FCM_API_KEY = "AAAAk_5fyGo:APA91bGbQ3-XwOPUs19oWg23KWzXpoXWf3GNrq3eXXs1yD2M6PIx0tHTVwHlB20viU3XB7opwvDn0Pdm87h-7pC8OcPLnCaI1SSl_tc23kVRWx94Z8EkE9cr677GOZuNa4VHuwuiJGq9",
+FCM_API_KEY = "AAAAk_5fyGo:APA91bGbQ3-XwOPUs19oWg23KWzXpoXWf3GNrq3eXXs1yD2M6PIx0tHTVwHlB20viU3XB7opwvDn0Pdm87h-7pC8OcPLnCaI1SSl_tc23kVRWx94Z8EkE9cr677GOZuNa4VHuwuiJGq9"
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
