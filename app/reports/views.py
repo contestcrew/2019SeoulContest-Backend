@@ -22,7 +22,7 @@ class ReportViewSet(viewsets.ModelViewSet):
         if request_id is not None:
             queryset = queryset.filter(request=request_id)
         if self.action == "list" and user.is_authenticated:
-            queryset = queryset.filter(author=user)
+            queryset = queryset.filter(request__author=user)
         return queryset
 
     @swagger_auto_schema(manual_parameters=[report_query_parameter])
