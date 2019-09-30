@@ -25,7 +25,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class RequestSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True, read_only=True)
-    status = serializers.ChoiceField(choices=Request.REQUEST_STATUS)
+    status = serializers.ChoiceField(choices=Request.REQUEST_STATUS, required=False)
+    status_display = serializers.SerializerMethodField()
     author = UserNicknameSerializer(read_only=True)
     category_score = serializers.IntegerField(source="category.score", read_only=True)
 
@@ -39,6 +40,7 @@ class RequestSerializer(serializers.ModelSerializer):
             "title",
             "content",
             "status",
+            "status_display",
             "category_score",
             "score",
             "main_address",
@@ -51,7 +53,7 @@ class RequestSerializer(serializers.ModelSerializer):
             "images",
         )
 
-    def get_status(self, obj):
+    def get_status_display(self, obj):
         return obj.get_status_display()
 
     def create(self, validated_data):
