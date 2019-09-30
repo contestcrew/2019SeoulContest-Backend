@@ -25,7 +25,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class RequestSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True, read_only=True)
-    status = serializers.SerializerMethodField()
+    status = serializers.ChoiceField(choices=Request.REQUEST_STATUS)
     author = UserNicknameSerializer(read_only=True)
     category_score = serializers.IntegerField(source="category.score", read_only=True)
 
