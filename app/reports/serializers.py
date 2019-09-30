@@ -20,6 +20,7 @@ class ReportSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "images",
+            "is_select",
         )
 
     def create(self, validated_data):
