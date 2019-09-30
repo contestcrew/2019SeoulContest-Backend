@@ -1,5 +1,6 @@
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.decorators import action
 from .models import Report
 from .serializers import ReportSerializer
 from drf_yasg.utils import swagger_auto_schema
@@ -19,6 +20,8 @@ class ReportViewSet(viewsets.ModelViewSet):
         queryset = super().get_queryset()
         user = self.request.user
         request_id = self.request.query_params.get('request', None)
+        if self.action == "get_my_reports":
+            queryset = queryset.filter(author=user)
         if request_id is not None:
             queryset = queryset.filter(request=request_id)
         if self.action == "list" and user.is_authenticated:
@@ -28,3 +31,8 @@ class ReportViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(manual_parameters=[report_query_parameter])
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+    @action(methods=["get"], detail=False, url_path='mine', permission_classes=(IsAuthenticated,))
+    def get_my_reports(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
