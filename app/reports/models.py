@@ -18,6 +18,7 @@ class Report(models.Model):
     helped_at = models.DateTimeField("도움을 주기 시작한 시간")
     created_at = models.DateTimeField("업로드 시각", auto_now_add=True)
     updated_at = models.DateTimeField("수정 시각", auto_now=True)
+    is_select = models.BooleanField("선택 여부 확인", default=False)
 
 
 class ReportImage(models.Model):
