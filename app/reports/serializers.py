@@ -1,9 +1,11 @@
 from rest_framework import serializers
-from .models import Report
+from .models import Report, ReportImage
+from request.serializers import UserNicknameSerializer
 from notifications.utils import push_notifications
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    author = UserNicknameSerializer(read_only=True)
     images = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
@@ -21,7 +23,12 @@ class ReportSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
+        images = self.context.get("view").request.FILES
+        user = self.context.get("request").user
+        validated_data["author"] = user
         report = super().create(validated_data)
+        for image in images.getlist('images'):
+            ReportImage.objects.create(report=report, image=image)
         recipient = report.request.author
         if recipient.devices.exists():
             push_notifications(recipient)

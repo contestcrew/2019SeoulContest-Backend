@@ -12,9 +12,9 @@ class Report(models.Model):
     author = models.ForeignKey(
         User, related_name="reports", on_delete=models.CASCADE, verbose_name="작성자"
     )
-    title = models.CharField("제목", max_length=100)
-    content = models.TextField("내용")
-    is_agreed_inform = models.BooleanField("정보제공동의")
+    title = models.CharField("제목", max_length=100, blank=True)
+    content = models.TextField("내용", blank=True)
+    is_agreed_inform = models.BooleanField("정보제공동의", default=False)
     helped_at = models.DateTimeField("도움을 주기 시작한 시간")
     created_at = models.DateTimeField("업로드 시각", auto_now_add=True)
     updated_at = models.DateTimeField("수정 시각", auto_now=True)

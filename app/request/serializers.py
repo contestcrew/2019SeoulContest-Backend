@@ -59,6 +59,6 @@ class RequestSerializer(serializers.ModelSerializer):
         user = self.context.get("request").user
         validated_data["author"] = user
         request = super().create(validated_data)
-        for image in images.values():
+        for image in images.getlist("images"):
             RequestImage.objects.create(request=request, image=image)
         return request

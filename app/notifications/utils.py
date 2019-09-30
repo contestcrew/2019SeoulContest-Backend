@@ -11,13 +11,14 @@ User = get_user_model()
 
 def push_notifications(recipient, title=DEFAULT_TITLE, body=DEFAULT_MESSAGE):
     assert isinstance(recipient, User)
-    fcm = FCMNotification(api_key=settings.FCM_API_KEY)
+    fcm_api_key = getattr(settings, 'FCM_API_KEY')
+    fcm = FCMNotification(api_key=fcm_api_key)
     extra_kwargs = {
         "mutable_content": True,
     }
 
     return fcm.notify_multiple_devices(
-        registration_ids=[device.token for device in recipient.devices],
+        registration_ids=[device.token for device in recipient.devices.all()],
         message_title=title,
         message_body=body,
         content_available=True,
