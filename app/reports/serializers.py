@@ -1,16 +1,25 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Report, ReportImage
-from request.serializers import UserNicknameSerializer
 from notifications.utils import push_notifications
+
+User = get_user_model()
+
+
+class UserNicknameScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'nickname', 'manner_score')
 
 
 class ReportSerializer(serializers.ModelSerializer):
-    author = UserNicknameSerializer(read_only=True)
+    author = UserNicknameScoreSerializer(read_only=True)
     images = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Report
         fields = (
+            "id",
             "request",
             "author",
             "title",
